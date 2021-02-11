@@ -10,9 +10,7 @@ $(() => {
 	});
 	
 	// Load HTML: JavaScript
-	let host = window.location.host;
 	let pathname = window.location.pathname;
-	let uri = host + pathname;
 	
 	// Fix on Github
 	if(pathname === '/coders-pxh/') {
