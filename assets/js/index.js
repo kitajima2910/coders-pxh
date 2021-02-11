@@ -13,7 +13,9 @@ $(() => {
 	let host = window.location.host;
 	let pathname = window.location.pathname;
 	let uri = host + pathname;
-
+	
+	console.log(`${uri}/includes/javascript/index.html`);
+	
 	// Fix on Github
 	if(pathname === '/coders-pxh/') {
 		$('#html_javascript').load(`${uri}/includes/javascript/index.html`);
