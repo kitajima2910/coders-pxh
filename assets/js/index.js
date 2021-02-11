@@ -15,4 +15,7 @@ $(() => {
 	// Fix on Github
 	$('#html_javascript').load(pathname === '/coders-pxh/' ? 'includes/javascript/index.html' : './../../includes/javascript/index.html');
 
+	setTimeout(() => {
+		sh_highlightDocument();
+	}, 250);
 });
