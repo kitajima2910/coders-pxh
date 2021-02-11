@@ -17,5 +17,5 @@ $(() => {
 
 	setTimeout(() => {
 		sh_highlightDocument();
-	}, 250);
+	}, 500);
 });
