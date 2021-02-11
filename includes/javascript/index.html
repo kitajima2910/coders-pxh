@@ -1,0 +1,282 @@
+<div>
+    <h2>JQuery</h2>
+    <div>
+        <h3>file *.slim.min</h3>
+        <p>Không hỗ trợ: $('...').load('...')
+            <pre class="sh_javascript">
+
+                Uncaught TypeError: $(...).load is not a function
+            </pre>
+        </p>
+    </div>
+
+    <br>
+
+    <div>
+        <h3>.load()</h3>
+        <p>
+            <pre class="sh_javascript">
+
+                $('#result').load('test.html');
+            </pre>
+        </p>
+    </div>
+</div>
+
+<br>
+
+<div>
+    <h2>Callback - Promise - async/await</h2>
+    <div>
+        <p>Mô phổng lỗi:</p>
+        <pre class="sh_javascript">
+
+            const sum = (a, b) => {
+                setTimeout(() => {
+                    return a + b;
+                }, 1000);
+            };
+            
+            console.log(sum(5, 5)); // undefined
+        </pre>
+        <ul>
+            <p class="xh_text_blod">Fix lỗi:</p>
+            <li>
+                <p class="xh_text_blod">Callback:</p>
+                <span>Trong <span class="xh_text_red">callback</span> sẽ có 2 tham số <span
+                        class="xh_text_red">error</span>,
+                    <span class="xh_text_red">result</span></span>
+                <pre class="sh_javascript">
+
+                    const sum = (a, b, callback) => {
+                        setTimeout(() => {
+                            
+                            let error, result;
+                            
+                            if(typeof a !== 'number' || typeof b !== 'number') {
+                                error = 'Giá trị không phải là số...';
+                                return callback(error, null);
+                            }
+                            
+                            result = a + b;
+                            return callback(null, result);
+                        }, 1000);
+                    };
+                    
+                    // Thực thi
+                    sum(5, 5, (error, result) => {
+                        if(error) {
+                            console.log(error);
+                            return;
+                        }
+                        console.log(result);
+                    }); // 10
+                </pre>
+
+                <br>
+
+                <span><b>Lưu ý:</b> khi sử dụng <span class="xh_text_red">callback</span> sẽ có lúc xảy ra <span
+                        class="xh_text_red">callback hell(thực hiện nhiều callback lồng nhau)</span> không mong muốn
+                    trong
+                    khi code.</span>
+                <pre class="sh_javascript">
+
+                    const sum = (a, b, callback) => {
+                        setTimeout(() => {
+                            
+                            let error, result;
+                            
+                            if(typeof a !== 'number' || typeof b !== 'number') {
+                                error = 'Giá trị không phải là số...';
+                                return callback(error, null);
+                            }
+                            
+                            result = a + b;
+                            return callback(null, result);
+                        }, 1000);
+                    };
+                    
+                    // Thực thi
+                    sum(5, 5, (error01, result01) => {
+                        if(error01) {
+                            console.log(error01);
+                            return;
+                        }
+                        sum(result01, 5, (error02, result02) => {
+                            if(error02) {
+                                console.log(error02);
+                                return;
+                            }
+                            sum(result02, 5, (error03, result03) => {
+                                if(error03) {
+                                    console.log(error03);
+                                    return;
+                                }
+                                console.log(result03);
+                            });
+                        });
+                    }); // 20
+                </pre>
+                <span>Khắc phục <span class="xh_text_red">callback hell</span> sử dụng <span
+                        class="xh_text_red">promise</span></span>
+            </li>
+            <li>
+                <p class="xh_text_blod">Promise:</p>
+                <span>Trong <span class="xh_text_red">promise</span> sẽ có 2 tham số <span
+                        class="xh_text_red">resolve</span>,
+                    <span class="xh_text_red">reject</span></span>
+                <pre class="sh_javascript">
+                    
+                    const sum = (a, b) => {
+    
+                        return new Promise((resolve, rejects) => {
+                            setTimeout(() => {
+                            
+                                let error, result;
+                                
+                                if(typeof a !== 'number' || typeof b !== 'number') {
+                                    error = 'Giá trị không phải là số...';
+                                    return rejects(error);
+                                }
+                                
+                                result = a + b;
+                                return resolve(result);
+                                
+                            }, 1000);    
+                        });
+                        
+                    };
+                    
+                    // Thực thi
+                    sum(5, 5) // 10
+                        .then(response => console.log(response))
+                        .catch(error => console.log(error));
+                </pre>
+
+                <br>
+
+                <span>Sử dụng <span class="xh_text_red">promise</span> thay thế <span class="xh_text_red">callback
+                        hell</span>, <span class="xh_text_red">then</span> lồng nhau</span>
+                <pre class="sh_javascript">
+
+                    const sum = (a, b) => {
+    
+                        return new Promise((resolve, rejects) => {
+                            setTimeout(() => {
+                            
+                                let error, result;
+                                
+                                if(typeof a !== 'number' || typeof b !== 'number') {
+                                    error = 'Giá trị không phải là số...';
+                                    return rejects(error);
+                                }
+                                
+                                result = a + b;
+                                return resolve(result);
+                                
+                            }, 1000);    
+                        });
+                        
+                    };
+                    
+                    // Thực thi
+                    sum(5, 5) // 20
+                        .then(response01 => sum(response01, 5)
+                        .then(response02 => sum(response02, 5)
+                        .then(response03 => console.log(response03))))
+                        .catch(error => console.log(error));
+                </pre>
+
+                <br>
+
+                <span><span class="xh_text_red">then</span> không lồng nhau(khuyên dùng)</span>
+                <pre class="sh_javascript">
+
+                    // Thực thi
+                    sum(5, 5) // 20
+                        .then(response => sum(response, 5))
+                        .then(response => sum(response, 5))
+                        .then(response => console.log(response))
+                        .catch(error => console.log(error));
+                </pre>
+
+                <span>Để khắc phục <span class="xh_text_red">then</span>, <span class="xh_text_red">catch</span> trong
+                    <span class="xh_text_red">ES7</span> có kỹ thuật <span class="xh_text_red">async</span>, <span
+                        class="xh_text_red">await</span> khi trả về một <span class="xh_text_red">promise</span></span>
+            </li>
+            <li>
+                <p class="xh_text_blod">async/await (sử dụng khi trả về promise):</p>
+                <pre class="sh_javascript">
+
+                    const sum = (a, b) => {
+    
+                        return new Promise((resolve, rejects) => {
+                            setTimeout(() => {
+                            
+                                let error, result;
+                                
+                                if(typeof a !== 'number' || typeof b !== 'number') {
+                                    error = 'Giá trị không phải là số...';
+                                    return rejects(error);
+                                }
+                                
+                                result = a + b;
+                                return resolve(result);
+                                
+                            }, 1000);    
+                        });
+                        
+                    };
+                    
+                    // Thực thi
+                    const getTotal = async (a, b) => {
+                        try {
+                            let total = await sum(a, b);
+                            console.log(total);
+                        } catch(error) {
+                            console.log(error);
+                        }
+                    };
+                    
+                    getTotal(5, 5); // 10
+                </pre>
+                
+                <br>
+
+                <span>Có thể <span class="xh_text_blod">chạy thực thi</span> luôn hàm:</span>
+                <pre class="sh_javascript">
+
+                    // Thực thi
+                    (async () => {
+                        try {
+                            let total = await sum(5, 5);
+                            console.log(total);
+                        } catch(error) {
+                            console.log(error);
+                        }
+                    })(); // 10
+                </pre>
+
+                <br>
+
+                <span>Mô phổng <span class="xh_text_red">callback hell</span> hay <span class="xh_text_red">then</span>,
+                    <span class="xh_text_red">catch</span> nhiều lần bằng <span class="xh_text_red">async</span>, <span
+                        class="xh_text_red">await</span></span>
+                <pre class="sh_javascript">
+
+                    // Thực thi
+                    (async () => {
+                        try {
+                            let total01 = await sum(5, 5);
+                            let total02 = await sum(total01, 5);
+                            let total03 = await sum(total02, 5);
+                            console.log(total03);
+                        } catch(error) {
+                            console.log(error);
+                        }
+                    })(); // 20
+                </pre>
+            </li>
+        </ul>
+    </div>
+</div>

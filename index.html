@@ -10,12 +10,19 @@
     <!-- CSS -->
     <!-- Statics -->
     <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./assets/shjs/sh_style.min.css">
+    <link rel="stylesheet" href="./assets/shjs/css/sh_darkness.min.css">
 
     <!-- Customize -->
     <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/customize.css">
 </head>
 
-<body>
+<body onload="sh_highlightDocument();">
+
+    <h1 class="xh_text_center xh_text_upper"><span class="xh_error">CTRL + F</span> của <span
+            class="xh_text_blue">BROWSER</span> để tìm kiếm từ khóa trong tabs</h1>
+    <span class="xh_text_center xh_block xh_text_red xh_text_upper xh_text_blod">(chạy tốt với CHROME)</span>
 
     <section class="tabs-menu">
 
@@ -31,9 +38,6 @@
                 <li role="presentation">
                     <a href="#tabs-link-3" role="tab" aria-selected="false">JavaScript</a>
                 </li>
-                <li role="presentation">
-                    <a href="#tabs-link-4" role="tab" aria-selected="false">Frameworks</a>
-                </li>
             </ul>
         </div>
 
@@ -42,18 +46,24 @@
             <section id="tabs-link-1" role="tabpanel" aria-hidden="false">
                 <h2>First Panel Header</h2>
                 <p>First panel content goes here...</p>
+                <pre class="sh_c">
+
+                    #include &lt;iostream&gt;
+                    
+                    using namespace std;
+                    
+                    int main(int argc, char ** argv) {
+                      cout &lt;&lt; "Hello world" &lt;&lt; endl;
+                      return 0;
+                    }
+                </pre>
             </section>
             <section id="tabs-link-2" role="tabpanel" aria-hidden="true">
                 <h2>Second Panel Header</h2>
                 <p>Second panel content goes here...</p>
             </section>
             <section id="tabs-link-3" role="tabpanel" aria-hidden="true">
-                <h2>Third Panel Header</h2>
-                <p>Third panel content goes here...</p>
-            </section>
-            <section id="tabs-link-4" role="tabpanel" aria-hidden="true">
-                <h2>Fourth Panel Header</h2>
-                <p>Fourth panel content goes here...</p>
+                <div id="html_javascript"></div>
             </section>
         </div>
 
@@ -61,7 +71,23 @@
 
     <!-- JS -->
     <!-- Librarys -->
-    <script src="./assets/libs/jquery-3.5.1.slim.min.js"></script>
+    <script src="./assets/libs/jquery-3.5.1.min.js"></script>
+
+    <!-- SHJS -->
+    <script src="./assets/shjs/sh_main.min.js"></script>
+    <script src="./assets/shjs/lang/sh_c.min.js"></script>
+    <script src="./assets/shjs/lang/sh_cpp.min.js"></script>
+    <script src="./assets/shjs/lang/sh_csharp.min.js"></script>
+    <script src="./assets/shjs/lang/sh_css.min.js"></script>
+    <script src="./assets/shjs/lang/sh_html.min.js"></script>
+    <script src="./assets/shjs/lang/sh_java.min.js"></script>
+    <script src="./assets/shjs/lang/sh_javascript.min.js"></script>
+    <script src="./assets/shjs/lang/sh_javascript_dom.min.js"></script>
+    <script src="./assets/shjs/lang/sh_sql.min.js"></script>
+    <script src="./assets/shjs/lang/sh_xml.min.js"></script>
+    <script src="./assets/shjs/lang/sh_sh.min.js"></script>
+    <script src="./assets/shjs/lang/sh_php.min.js"></script>
+    <script src="./assets/shjs/lang/sh_pascal.min.js"></script>
 
     <!-- Customize -->
     <script src="./assets/js/index.js"></script>

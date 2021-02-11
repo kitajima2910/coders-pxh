@@ -1,0 +1,49 @@
+/* Commons */
+.xh_error {
+    color: red;
+}
+
+.xh_w_100 {
+    width: 100%;
+}
+
+.xh_block {
+    display: block;
+}
+
+/* Text */
+.xh_text_center {
+    text-align: center;
+}
+
+.xh_text_left {
+    text-align: left;
+}
+
+.xh_text_rigth {
+    text-align: right;
+}
+
+.xh_text_blod {
+    font-weight: 600;
+}
+
+.xh_text_upper {
+    text-transform: uppercase;
+}
+
+.xh_text_lower {
+    text-transform: lowercase;
+}
+
+.xh_text_red {
+    color: red;
+}
+
+.xh_text_blue {
+    color: blue;
+}
+
+.xh_text_green {
+    color: green;
+}
