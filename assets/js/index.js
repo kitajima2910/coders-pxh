@@ -10,5 +10,15 @@ $(() => {
 	});
 	
 	// Load HTML: JavaScript
-	$('#html_javascript').load('./../../includes/javascript/index.html');
+	let host = window.location.host;
+	let pathname = window.location.pathname;
+	let uri = host + pathname;
+
+	// Fix on Github
+	if(pathname === '/coders-pxh/') {
+		$('#html_javascript').load(`${uri}/includes/javascript/index.html`);
+	} else {
+		$('#html_javascript').load('./../../includes/javascript/index.html');
+	}
+	
 });
