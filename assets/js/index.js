@@ -8,15 +8,11 @@ $(() => {
 		$(tabpanelShow).attr("aria-hidden", "false");
 		$(tabpanelShow).siblings().attr("aria-hidden", "true");
 	});
-	
+
 	// Load HTML: JavaScript
 	let pathname = window.location.pathname;
-	
+
 	// Fix on Github
-	if(pathname === '/coders-pxh/') {
-		$('#html_javascript').load('includes/javascript/index.html');
-	} else {
-		$('#html_javascript').load('./../../includes/javascript/index.html');
-	}
-	
+	$('#html_javascript').load(pathname === '/coders-pxh/' ? 'includes/javascript/index.html' : './../../includes/javascript/index.html');
+
 });
