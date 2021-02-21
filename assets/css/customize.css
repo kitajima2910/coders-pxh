@@ -1,4 +1,15 @@
 /* Commons */
+.xh_a_none {
+    text-decoration: none;
+}
+
+.xh_border {
+    border: 2px dashed #000;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 50px 0px;
+}
+
 .xh_error {
     color: red;
 }
@@ -46,4 +57,20 @@
 
 .xh_text_green {
     color: green;
+}
+
+.xh_text_white {
+    color: white;
+}
+
+.xh_text_fff {
+    color: #fff;
+}
+
+.xh_text_black {
+    color: black;
+}
+
+.xh_text_000 {
+    color: #000;
 }

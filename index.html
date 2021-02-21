@@ -18,56 +18,365 @@
     <link rel="stylesheet" href="./assets/css/customize.css">
 </head>
 
-<body>
+<body onload="sh_highlightDocument();">
 
     <h1 class="xh_text_center xh_text_upper"><span class="xh_error">CTRL + F</span> của <span
             class="xh_text_blue">BROWSER</span> để tìm kiếm từ khóa trong tabs</h1>
-    <span class="xh_text_center xh_block xh_text_red xh_text_upper xh_text_blod">(chạy tốt với CHROME phiên bản mới)</span>
+    <span class="xh_text_center xh_block xh_text_red xh_text_upper xh_text_blod">(chạy tốt với CHROME phiên bản
+        mới)</span>
 
-    <section class="tabs-menu">
 
-        <!-- Tab navigation -->
-        <div class="tablist-reponsiveScroll">
-            <ul role="tablist">
-                <li role="presentation">
-                    <a href="#tabs-link-1" role="tab" aria-selected="true">HTML</a>
+    <!-- JavaScript Convert to HTML Entities online -->
+    <div class="xh_border">
+        <h2>JavaScript Convert to HTML Entities online</h2>
+        <div>
+            <h3 class="xh_text_red">Solution:</h3>
+            <pre class="sh_javascript">
+
+                <a href="https://www.online-toolz.com/tools/text-html-entities-convertor.php" class="xh_a_none xh_text_fff">
+                    https://www.online-toolz.com/tools/text-html-entities-convertor.php
+                </a>
+            </pre>
+        </div>
+    </div>
+    <!-- JavaScript Convert to HTML Entities online -->
+
+    <!-- Why the crossorigin Attribute? -->
+    <div class="xh_border">
+        <h2>Why the crossorigin Attribute?</h2>
+        <div>
+            <h3 class="xh_text_red">Solution:</h3>
+            <p>If you serve from a CDN, we recommend to keep the crossorigin attribute set:</p>
+            <pre class="sh_javascript">
+
+                &lt;script crossorigin src=&quot;...&quot;&gt;&lt;/script&gt;
+            </pre>
+            <p>We also recommend to verify that the CDN you are using sets the Access-Control-Allow-Origin: * HTTP
+                header:</p>
+            <div class="xh_w_100 xh_text_center">
+                <img src="./assets/images/cdn-cors-header.png">
+            </div>
+        </div>
+    </div>
+    <!-- Why the crossorigin Attribute? -->
+
+    <!-- npm - EPERM: operation not permitted on Windows -->
+    <div class="xh_border">
+        <h2>npm - EPERM: operation not permitted on Windows</h2>
+        <div>
+            <h3 class="xh_text_red">Solution:</h3>
+            <p>I had an outdated version of npm. I ran a series of commands to resolve this issue:</p>
+            <pre class="sh_javascript">
+
+                npm cache clean --force
+            </pre>
+            <p>Then:</p>
+            <pre class="sh_javascript">
+
+                npm install -g npm@latest --force
+            </pre>
+            <p>Then (once again):</p>
+            <pre class="sh_javascript">
+
+                npm cache clean --force
+            </pre>
+            <p>And finally was able to run this (installing Angular/Vue/React project) without the errors I was seeing
+                regarding EPERM</p>
+        </div>
+    </div>
+    <!-- npm - EPERM: operation not permitted on Windows -->
+
+    <!-- file JQuery *.slim.min -->
+    <div class="xh_border">
+        <h2>file JQuery *.slim.min</h2>
+        <div>
+            <h3 class="xh_text_red">Solution:</h3>
+            <p>Không hỗ trợ: $('...').load('...')
+                <pre class="sh_javascript">
+
+                    Uncaught TypeError: $(...).load is not a function
+                </pre>
+            </p>
+        </div>
+    </div>
+    <!-- file JQuery *.slim.min -->
+
+    <!-- Hàm .load() -->
+    <div class="xh_border">
+        <h2>Hàm .load()</h2>
+        <div>
+            <h3 class="xh_text_red">Solution:</h3>
+            <p>Không hỗ trợ: $('...').load('...')
+                <pre class="sh_javascript">
+
+                    Uncaught TypeError: $(...).load is not a function
+                </pre>
+            </p>
+        </div>
+    </div>
+    <!-- Hàm .load() -->
+
+    <!-- Callback - Promise - async/await -->
+    <div class="xh_border">
+        <h2>Callback - Promise - async/await</h2>
+        <p>Mô phổng lỗi:</p>
+        <pre class="sh_javascript">
+
+            const sum = (a, b) => {
+                setTimeout(() => {
+                    return a + b;
+                }, 1000);
+            };
+            
+            console.log(sum(5, 5)); // undefined
+        </pre>
+        <div>
+            <h3 class="xh_text_red">Solution:</h3>
+            <ul>
+                <p class="xh_text_blod">Fix lỗi:</p>
+                <li>
+                    <p class="xh_text_blod">Callback:</p>
+                    <span>Trong <span class="xh_text_red">callback</span> sẽ có 2 tham số <span
+                            class="xh_text_red">error</span>,
+                        <span class="xh_text_red">result</span></span>
+                    <pre class="sh_javascript">
+
+                        const sum = (a, b, callback) => {
+                            setTimeout(() => {
+                                
+                                let error, result;
+                                
+                                if(typeof a !== 'number' || typeof b !== 'number') {
+                                    error = 'Giá trị không phải là số...';
+                                    return callback(error, null);
+                                }
+                                
+                                result = a + b;
+                                return callback(null, result);
+                            }, 1000);
+                        };
+                        
+                        // Thực thi
+                        sum(5, 5, (error, result) => {
+                            if(error) {
+                                console.log(error);
+                                return;
+                            }
+                            console.log(result);
+                        }); // 10
+                    </pre>
+
+                    <br>
+
+                    <span><b>Lưu ý:</b> khi sử dụng <span class="xh_text_red">callback</span> sẽ có lúc xảy ra <span
+                            class="xh_text_red">callback hell(thực hiện nhiều callback lồng nhau)</span> không mong muốn
+                        trong
+                        khi code.</span>
+                    <pre class="sh_javascript">
+
+                        const sum = (a, b, callback) => {
+                            setTimeout(() => {
+                                
+                                let error, result;
+                                
+                                if(typeof a !== 'number' || typeof b !== 'number') {
+                                    error = 'Giá trị không phải là số...';
+                                    return callback(error, null);
+                                }
+                                
+                                result = a + b;
+                                return callback(null, result);
+                            }, 1000);
+                        };
+                        
+                        // Thực thi
+                        sum(5, 5, (error01, result01) => {
+                            if(error01) {
+                                console.log(error01);
+                                return;
+                            }
+                            sum(result01, 5, (error02, result02) => {
+                                if(error02) {
+                                    console.log(error02);
+                                    return;
+                                }
+                                sum(result02, 5, (error03, result03) => {
+                                    if(error03) {
+                                        console.log(error03);
+                                        return;
+                                    }
+                                    console.log(result03);
+                                });
+                            });
+                        }); // 20
+                    </pre>
+                    <span>Khắc phục <span class="xh_text_red">callback hell</span> sử dụng <span
+                            class="xh_text_red">promise</span></span>
                 </li>
-                <li role="presentation">
-                    <a href="#tabs-link-2" role="tab" aria-selected="false">CSS</a>
+                <li>
+                    <p class="xh_text_blod">Promise:</p>
+                    <span>Trong <span class="xh_text_red">promise</span> sẽ có 2 tham số <span
+                            class="xh_text_red">resolve</span>,
+                        <span class="xh_text_red">reject</span></span>
+                    <pre class="sh_javascript">
+
+                        const sum = (a, b) => {
+        
+                            return new Promise((resolve, rejects) => {
+                                setTimeout(() => {
+                                
+                                    let error, result;
+                                    
+                                    if(typeof a !== 'number' || typeof b !== 'number') {
+                                        error = 'Giá trị không phải là số...';
+                                        return rejects(error);
+                                    }
+                                    
+                                    result = a + b;
+                                    return resolve(result);
+                                    
+                                }, 1000);    
+                            });
+                            
+                        };
+                        
+                        // Thực thi
+                        sum(5, 5) // 10
+                            .then(response => console.log(response))
+                            .catch(error => console.log(error));
+                    </pre>
+
+                    <br>
+
+                    <span>Sử dụng <span class="xh_text_red">promise</span> thay thế <span class="xh_text_red">callback
+                            hell</span>, <span class="xh_text_red">then</span> lồng nhau</span>
+                    <pre class="sh_javascript">
+
+                        const sum = (a, b) => {
+        
+                            return new Promise((resolve, rejects) => {
+                                setTimeout(() => {
+                                
+                                    let error, result;
+                                    
+                                    if(typeof a !== 'number' || typeof b !== 'number') {
+                                        error = 'Giá trị không phải là số...';
+                                        return rejects(error);
+                                    }
+                                    
+                                    result = a + b;
+                                    return resolve(result);
+                                    
+                                }, 1000);    
+                            });
+                            
+                        };
+                        
+                        // Thực thi
+                        sum(5, 5) // 20
+                            .then(response01 => sum(response01, 5)
+                            .then(response02 => sum(response02, 5)
+                            .then(response03 => console.log(response03))))
+                            .catch(error => console.log(error));
+                    </pre>
+
+                    <br>
+
+                    <span><span class="xh_text_red">then</span> không lồng nhau(khuyên dùng)</span>
+                    <pre class="sh_javascript">
+
+                        // Thực thi
+                        sum(5, 5) // 20
+                            .then(response => sum(response, 5))
+                            .then(response => sum(response, 5))
+                            .then(response => console.log(response))
+                            .catch(error => console.log(error));
+                    </pre>
+
+                    <span>Để khắc phục <span class="xh_text_red">then</span>, <span class="xh_text_red">catch</span>
+                        trong
+                        <span class="xh_text_red">ES7</span> có kỹ thuật <span class="xh_text_red">async</span>, <span
+                            class="xh_text_red">await</span> khi trả về một <span
+                            class="xh_text_red">promise</span></span>
                 </li>
-                <li role="presentation">
-                    <a href="#tabs-link-3" role="tab" aria-selected="false">JavaScript</a>
+                <li>
+                    <p class="xh_text_blod">async/await (sử dụng khi trả về promise):</p>
+                    <pre class="sh_javascript">
+
+                        const sum = (a, b) => {
+        
+                            return new Promise((resolve, rejects) => {
+                                setTimeout(() => {
+                                
+                                    let error, result;
+                                    
+                                    if(typeof a !== 'number' || typeof b !== 'number') {
+                                        error = 'Giá trị không phải là số...';
+                                        return rejects(error);
+                                    }
+                                    
+                                    result = a + b;
+                                    return resolve(result);
+                                    
+                                }, 1000);    
+                            });
+                            
+                        };
+                        
+                        // Thực thi
+                        const getTotal = async (a, b) => {
+                            try {
+                                let total = await sum(a, b);
+                                console.log(total);
+                            } catch(error) {
+                                console.log(error);
+                            }
+                        };
+                        
+                        getTotal(5, 5); // 10
+                    </pre>
+
+                    <br>
+
+                    <span>Có thể <span class="xh_text_blod">chạy thực thi</span> luôn hàm:</span>
+                    <pre class="sh_javascript">
+
+                        // Thực thi
+                        (async () => {
+                            try {
+                                let total = await sum(5, 5);
+                                console.log(total);
+                            } catch(error) {
+                                console.log(error);
+                            }
+                        })(); // 10
+                    </pre>
+
+                    <br>
+
+                    <span>Mô phổng <span class="xh_text_red">callback hell</span> hay <span
+                            class="xh_text_red">then</span>,
+                        <span class="xh_text_red">catch</span> nhiều lần bằng <span class="xh_text_red">async</span>,
+                        <span class="xh_text_red">await</span></span>
+                    <pre class="sh_javascript">
+
+                        // Thực thi
+                        (async () => {
+                            try {
+                                let total01 = await sum(5, 5);
+                                let total02 = await sum(total01, 5);
+                                let total03 = await sum(total02, 5);
+                                console.log(total03);
+                            } catch(error) {
+                                console.log(error);
+                            }
+                        })(); // 20
+                    </pre>
                 </li>
             </ul>
         </div>
-
-        <!-- Tab panel content -->
-        <div class="tab-content">
-            <section id="tabs-link-1" role="tabpanel" aria-hidden="false">
-                <h2>First Panel Header</h2>
-                <p>First panel content goes here...</p>
-                <pre class="sh_c">
-
-                    #include &lt;iostream&gt;
-                    
-                    using namespace std;
-                    
-                    int main(int argc, char ** argv) {
-                      cout &lt;&lt; "Hello world" &lt;&lt; endl;
-                      return 0;
-                    }
-                </pre>
-            </section>
-            <section id="tabs-link-2" role="tabpanel" aria-hidden="true">
-                <h2>Second Panel Header</h2>
-                <p>Second panel content goes here...</p>
-            </section>
-            <section id="tabs-link-3" role="tabpanel" aria-hidden="true">
-                <div id="html_javascript"></div>
-            </section>
-        </div>
-
-    </section>
+    </div>
+    <!-- Callback - Promise - async/await -->
 
     <!-- JS -->
     <!-- Librarys -->
