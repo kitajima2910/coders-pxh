@@ -1,6 +1,6 @@
 /* Commons */
 .xh_a_none, a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .xh_border {
@@ -11,66 +11,66 @@
 }
 
 .xh_error {
-    color: red;
+    color: red !important;
 }
 
 .xh_w_100 {
-    width: 100%;
+    width: 100% !important;
 }
 
 .xh_block {
-    display: block;
+    display: block !important;
 }
 
 /* Text */
 .xh_text_center {
-    text-align: center;
+    text-align: center !important;
 }
 
 .xh_text_left {
-    text-align: left;
+    text-align: left !important;
 }
 
 .xh_text_rigth {
-    text-align: right;
+    text-align: right !important;
 }
 
 .xh_text_blod {
-    font-weight: 600;
+    font-weight: 600 !important;
 }
 
 .xh_text_upper {
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
 
 .xh_text_lower {
-    text-transform: lowercase;
+    text-transform: lowercase !important;
 }
 
 .xh_text_red {
-    color: red;
+    color: red !important;
 }
 
 .xh_text_blue {
-    color: blue;
+    color: blue !important;
 }
 
 .xh_text_green {
-    color: green;
+    color: green !important;
 }
 
 .xh_text_white {
-    color: white;
+    color: white !important;
 }
 
 .xh_text_fff {
-    color: #fff;
+    color: #fff !important;
 }
 
 .xh_text_black {
-    color: black;
+    color: black !important;
 }
 
 .xh_text_000 {
-    color: #000;
+    color: #000 !important;
 }
