@@ -1,13 +1,13 @@
 /* Commons */
 .xh_a_none, a {
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 .xh_border {
-    border: 2px solid #000;
-    border-radius: 10px;
-    padding: 5px;
-    margin: 50px 0px;
+    border: 2px solid #000 !important;
+    border-radius: 10px !important;
+    padding: 5px !important;
+    margin: 50px 0px !important;
 }
 
 .xh_error {
