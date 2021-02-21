@@ -1,10 +1,10 @@
 /* Commons */
 .xh_a_none, a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .xh_border {
-    border: 2px dashed #000;
+    border: 2px solid #000;
     border-radius: 10px;
     padding: 5px;
     margin: 50px 0px;
